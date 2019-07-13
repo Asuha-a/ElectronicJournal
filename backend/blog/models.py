@@ -18,6 +18,18 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+class CommentModel(models.Model):
+    author = models.ForeignKey('auth.User', on_delete=models.CASCADE)
+    target_post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True)
+    comment = models.TextField(blank=True, null=True)
+    published_date = models.DateTimeField(auto_now_add=True)
+
+"""
+class Article(models.Model):
+    title = models.CharField(max_length=300, blank=True, null=True)
+    cotents_text = models.TextField(blank=True, null=True)
+    pubdate = models.DateTimeField(auto_now_add=True)
+"""
 """
 class Post(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE)
