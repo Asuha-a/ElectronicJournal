@@ -4,3 +4,4 @@ djangorestframework
 djangorestframework-jwt
 django-rest-auth>=0.9.3
 django-allauth>=0.37.1
+django-cors-headers

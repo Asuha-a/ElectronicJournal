@@ -22,6 +22,7 @@ class ArticleList extends React.Component {
   }
 
   componentDidMounnt() {
+    console.log("test");
     axios.get('http://127.0.0.1:8000/api/v1/')
       .then(res => {
         this.setState({
@@ -32,6 +33,8 @@ class ArticleList extends React.Component {
   }
 
   render() {
+    this.componentDidMounnt();
+    console.log("this.state.articles: ", this.state.articles)
     return (
       <Articles data = {listData}/>
     );

@@ -23,6 +23,7 @@ def post_new(request):
 """
 
 class PostList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthorOrReadOnly,)
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
