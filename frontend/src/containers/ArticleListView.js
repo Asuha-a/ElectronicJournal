@@ -21,20 +21,17 @@ class ArticleList extends React.Component {
     articles: []
   }
 
-  componentDidMounnt() {
-    console.log("test");
+  componentDidMount() {
     axios.get('http://127.0.0.1:8000/api/v1/')
       .then(res => {
         this.setState({
           articles: res.data
         });
-        console.log(res.data);
+        console.log('res.data:', res.data);
       })
   }
 
   render() {
-    this.componentDidMounnt();
-    console.log("this.state.articles: ", this.state.articles)
     return (
       <Articles data = {listData}/>
     );
