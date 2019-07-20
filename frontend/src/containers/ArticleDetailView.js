@@ -14,13 +14,14 @@ class ArticleDetail extends React.Component {
     axios.get(`http://127.0.0.1:8000/api/v1/${articleID}`)
       .then(res => {
         this.setState({
-          articles: res.data
+          article: res.data
         });
         console.log('res.data:', res.data);
       })
   }
 
   render() {
+    console.log("this.state.article.txt", this.state.article.text);
     return (
       <Card title={this.state.article.title}>
         <p>{this.state.article.text}</p>
