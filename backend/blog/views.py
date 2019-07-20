@@ -5,7 +5,7 @@ from django.shortcuts import render, get_object_or_404
 from .forms import PostForm
 from rest_framework import generics
 from .serializers import *
-from .permissions import IsAuthorOrReadOnly
+from .permissions import *
 
 #from .api.serializers import *
 """
@@ -33,11 +33,12 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
 
 class PostDetailAPIView(generics.RetrieveAPIView):
+    permission_classes = (IsAuthorOrReadOnly,)
     queryset = Post.objects.all()
     serializer_class = PostDetailSerializer
     lookup_field = 'pk'
 
 class CommentAPIView(generics.ListCreateAPIView):
-    permission_classes = (IsAuthorOrReadOnly,)
+    permission_classes = (permissions.AllowAny,)
     queryset = CommentModel.objects.all()
     serializer_class = CommentSerializer
