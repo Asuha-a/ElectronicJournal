@@ -33,7 +33,7 @@ class ArticleDetail extends React.Component {
         <Card title=<h1>Add New Comment</h1>>
           <CustomForm
             requestType="post"
-            target_post={this.state.article.title}/>
+            target_post={this.state.article.id}/>
         </Card>
       </div>
     );
