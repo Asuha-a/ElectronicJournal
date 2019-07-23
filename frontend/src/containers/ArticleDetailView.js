@@ -2,7 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 import { Card } from 'antd';
-import CustomForm from '../components/Form'
+import CustomForm from '../components/Form';
+import CommentComponent from '../components/Comment';
 
 class ArticleDetail extends React.Component {
 
@@ -17,21 +18,24 @@ class ArticleDetail extends React.Component {
         this.setState({
           article: res.data
         });
-        console.log('res.data:', res.data);
+        console.log('article res.data: ', res.data);
       })
   }
 
   render() {
-    console.log("this.state.article.txt", this.state.article.text);
+    console.log('this.state.article.id', this.state.article.id);
     return (
-      <Card title={this.state.article.title}>
-        <p>{this.state.article.text}</p>
-        <br />
-        <h2>Add New Comment</h2>
-        <CustomForm
-          requestType="post"
-          target_post={this.state.article.title}/>
-      </Card>
+      <div>
+        <Card title=<h1>{this.state.article.title}</h1>>
+          <p>{this.state.article.text}</p>
+        </Card>
+        <CommentComponent articleID={this.state.article.id}/>
+        <Card title=<h1>Add New Comment</h1>>
+          <CustomForm
+            requestType="post"
+            target_post={this.state.article.title}/>
+        </Card>
+      </div>
     );
   }
 }
