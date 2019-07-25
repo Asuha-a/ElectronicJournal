@@ -5,6 +5,8 @@ import { Card } from 'antd';
 import CustomForm from '../components/Form';
 import CommentComponent from '../components/Comment';
 
+import Loading from '../components/Loading'
+
 class ArticleDetail extends React.Component {
 
   state = {
@@ -23,6 +25,9 @@ class ArticleDetail extends React.Component {
   }
 
   render() {
+    if (!Number.isInteger(this.state.article.id))
+      return <Loading />;
+
     console.log('this.state.article.id', this.state.article.id);
     return (
       <div>
