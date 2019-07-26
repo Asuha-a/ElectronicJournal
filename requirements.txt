@@ -7,3 +7,4 @@ django-allauth>=0.37.1
 django-cors-headers
 gunicorn==19.7.1
 django-heroku
+whitenoise
