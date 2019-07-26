@@ -1,6 +1,7 @@
 import React from 'react';
 import Articles from '../components/Article';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class ArticleList extends React.Component {
 
@@ -25,4 +26,10 @@ class ArticleList extends React.Component {
   }
 }
 
-export default ArticleList;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.token !== null
+  }
+}
+
+export default connect(mapStateToProps)(ArticleList);

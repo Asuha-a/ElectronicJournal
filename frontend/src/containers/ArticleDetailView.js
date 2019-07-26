@@ -2,8 +2,9 @@ import React from 'react';
 import axios from 'axios';
 
 import { Card } from 'antd';
-import CustomForm from '../components/Form';
+import { connect } from 'react-redux';
 import CommentComponent from '../components/Comment';
+import CommentFormComponent from '../components/CommentForm';
 
 import Loading from '../components/Loading'
 
@@ -22,6 +23,7 @@ class ArticleDetail extends React.Component {
         });
         console.log('article res.data: ', res.data);
       })
+
   }
 
   render() {
@@ -31,18 +33,21 @@ class ArticleDetail extends React.Component {
     console.log('this.state.article.id', this.state.article.id);
     return (
       <div>
+        {this.props.isAuthenticated}
         <Card title=<h1>{this.state.article.title}</h1>>
           <p>{this.state.article.text}</p>
         </Card>
         <CommentComponent articleID={this.state.article.id}/>
-        <Card title=<h1>Add New Comment</h1>>
-          <CustomForm
-            requestType="post"
-            target_post={this.state.article.id}/>
-        </Card>
+        <CommentFormComponent articleID={this.state.article.id}/>
       </div>
     );
   }
 }
 
-export default ArticleDetail;
+const mapStateToProps = state => {
+  return {
+    isAuthenticated: state.token !== null
+  }
+}
+
+export default connect(mapStateToProps)(ArticleDetail);

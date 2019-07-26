@@ -2,9 +2,16 @@ import React from 'react';
 
 import { Form, Input, Button } from 'antd';
 import axios from 'axios';
+import PropTypes from 'prop-types'
+import { withRouter } from 'react-router';
 
 class CustomForm extends React.Component {
 
+  static propTypes = {
+    match: PropTypes.object.isRequired,
+    location: PropTypes.object.isRequired,
+    history: PropTypes.object.isRequired
+  }
 
   handleFormSubmit = (event, requestType) => {
     event.preventDefault();
@@ -15,11 +22,7 @@ class CustomForm extends React.Component {
     console.log("comment: ", comment);
     console.log("target_post: ", this.props.target_post);
 
-    console.log(axios.post('http://127.0.0.1:8000/api/v1/comment/', {
-      author: name,
-      target_post: this.props.target_post,
-      comment: comment
-    }));
+    window.location.reload();
 
     switch(requestType) {
       case 'post':
@@ -29,6 +32,7 @@ class CustomForm extends React.Component {
           comment: comment
         }).then(res => console.log(res))
           .catch(error => console.error(error));
+        console.log('post completed');
       case 'put':
         return axios.put('http://127.0.0.1:8000/api/v1/comment/', {
           author: name,
@@ -37,6 +41,7 @@ class CustomForm extends React.Component {
         }).then(res => console.log(res))
           .catch(error => console.error(error));
     }
+    //this.props.history.push(`/articles/${this.props.target_post}`);
   }
 
   render() {
@@ -46,8 +51,8 @@ class CustomForm extends React.Component {
           event,
           this.props.requestType,
         )}>
-          <Form.Item label="Name">
-            <Input name="name" placeholder="Put your name here..." />
+          <Form.Item label="">
+            <Input type='hidden' value='1' name="name" placeholder="Put your name here..." />
           </Form.Item>
           <Form.Item label="Comment">
             <Input name="comment" placeholder="Enter some text..." />
@@ -61,4 +66,4 @@ class CustomForm extends React.Component {
   }
 }
 
-export default CustomForm;
+export default withRouter(CustomForm);
