@@ -111,7 +111,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.path.join(BASE_DIR, '/var/run/postgresql/.s.PGSQL.5432'),
+        'NAME': os.path.join('/var/run/postgresql/', '.s.PGSQL.5432'),
     }
 }
 
