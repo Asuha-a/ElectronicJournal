@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
-import { Card } from 'antd';
+import { Card, List } from 'antd';
 
 class CommentComponent extends React.Component {
 
@@ -31,39 +31,18 @@ class CommentComponent extends React.Component {
   }
 
   render() {
+    let list = [];
+    let data = this.state.comment;
+    for(let i in this.state.comment){
+      list.push(data[i].comment);
+      list.push(<br />);
+      console.log('this.state.comment[i].comment', data[i].comment);
+    }
+    console.log('list', list);
     return (
       <div>
       <Card title=<h1>Comments</h1>>
-        <p
-          style={{
-            fontSize: 14,
-            color: 'rgba(0, 0, 0, 0.85)',
-            marginBottom: 16,
-            fontWeight: 500,
-          }}
-        >
-        </p>
-        <Card
-          style={{ marginTop: 16 }}
-          type="inner"
-          title="Inner Card title"
-        >
-          Inner Card content
-        </Card>
-        <Card
-          style={{ marginTop: 16 }}
-          type="inner"
-          title="Inner Card title"
-        >
-          Inner Card content
-        </Card>
-        <Card
-          style={{ marginTop: 16 }}
-          type="inner"
-          title="Inner Card title"
-        >
-          Inner Card content
-        </Card>
+        {list}
       </Card>
       </div>
     );
