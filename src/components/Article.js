@@ -16,7 +16,7 @@ const Articles = (props) => {
     dataSource={props.data}
     footer={
       <div>
-        <b>ant design</b> footer part
+
       </div>
     }
     renderItem={item => (
