@@ -11,5 +11,5 @@ urlpatterns = [
     path('<int:pk>/', PostDetail.as_view()),
     path('', PostList.as_view()),
     path('detail/<int:pk>/', PostDetailAPIView.as_view(), name='detail'),
-    re_path('.*', TemplateView.as_view(template_name='index.html'))
+    #re_path('.*', TemplateView.as_view(template_name='index.html'))
 ]
