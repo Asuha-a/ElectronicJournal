@@ -1,6 +1,7 @@
-from django.urls import path
+from django.urls import path, re_path
 from . import views
 from .views import *
+from django.views.generic import TemplateView
 
 urlpatterns = [
     #path('', views.post_list, name='post_list'),
@@ -10,4 +11,5 @@ urlpatterns = [
     path('<int:pk>/', PostDetail.as_view()),
     path('', PostList.as_view()),
     path('detail/<int:pk>/', PostDetailAPIView.as_view(), name='detail'),
+    re_path('.*', TemplateView.as_view(template_name='index.html'))
 ]
