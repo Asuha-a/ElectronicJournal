@@ -16,7 +16,7 @@ class CommentComponent extends React.Component {
 
   componentDidMount() {
     console.log("this", this);
-    axios.get('http://127.0.0.1:8000/api/v1/comment')
+    axios.get('https://electronic-journal-asuha.herokuapp.com/api/v1/comment')
       .then(res => {
         let commentData = res.data.filter((item, index) => {
           if (item.target_post === this.props.articleID) return true;

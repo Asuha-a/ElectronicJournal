@@ -26,7 +26,7 @@ class CustomForm extends React.Component {
 
     switch(requestType) {
       case 'post':
-        return axios.post('http://127.0.0.1:8000/api/v1/comment/', {
+        return axios.post('https://electronic-journal-asuha.herokuapp.com/api/v1/comment/', {
           author: name,
           target_post: this.props.target_post,
           comment: comment
@@ -34,7 +34,7 @@ class CustomForm extends React.Component {
           .catch(error => console.error(error));
         console.log('post completed');
       case 'put':
-        return axios.put('http://127.0.0.1:8000/api/v1/comment/', {
+        return axios.put('https://electronic-journal-asuha.herokuapp.com/api/v1/comment/', {
           author: name,
           target_post: this.props.target_post,
           comment: comment
